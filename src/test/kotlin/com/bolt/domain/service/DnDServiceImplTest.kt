@@ -1,6 +1,7 @@
 package com.bolt.domain.service
 
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
@@ -42,7 +43,13 @@ class DnDServiceImplTest : StringSpec({
     // Mocking the HTTP client engine
     val mockEngine = MockEngine { request ->
         when {
-            request.url.encodedPath.contains("/api/classes") -> {
+            request.url.encodedPath.contains("api/classes/cleric") -> {
+                respond(
+                    mockResponseClassDetail, HttpStatusCode.OK, headersOf("Content-Type" to listOf("application/json"))
+                )
+            }
+
+            request.url.encodedPath.endsWith("/api/classes") -> {
                 respond(mockResponseSummary, HttpStatusCode.OK, headersOf("Content-Type" to listOf("application/json")))
             }
 
@@ -56,12 +63,6 @@ class DnDServiceImplTest : StringSpec({
 
             request.url.encodedPath.contains("/api/features") -> {
                 respond(mockResponseSummary, HttpStatusCode.OK, headersOf("Content-Type" to listOf("application/json")))
-            }
-
-            request.url.encodedPath.endsWith("/cleric") -> {
-                respond(
-                    mockResponseClassDetail, HttpStatusCode.OK, headersOf("Content-Type" to listOf("application/json"))
-                )
             }
 
             else -> respond("{}", HttpStatusCode.NotFound)
@@ -87,10 +88,14 @@ class DnDServiceImplTest : StringSpec({
         result["total_features"] shouldBe 2
     }
 
-    "should fetch class details for Unknown" {
+    "should fetch class details for Not found" {
         val classDetails = service.getClassDetails("xyz")
-        println(classDetails)
-        classDetails?.name shouldBe "Unknown"
-        classDetails?.hitDie shouldBe 0
+        classDetails.shouldBeNull()
+    }
+
+    "should fetch class details for Cleric" {
+        val classDetails = service.getClassDetails("cleric")
+        classDetails?.name shouldBe "Cleric"
+        classDetails?.hitDie shouldBe 8
     }
 })
