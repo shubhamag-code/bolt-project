@@ -143,7 +143,7 @@ com.bolt/
 
 The service implements in-memory caching to reduce load on the external D&D API. (5 minutes TTL)
 
-
+## Testing
 
 ```bash
 ./gradlew test

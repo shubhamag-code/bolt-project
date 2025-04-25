@@ -87,7 +87,6 @@ class DnDServiceImplTest : StringSpec({
         result["total_features"] shouldBe 2
     }
 
-    // Test for getClassDetails method (for Cleric)
     "should fetch class details for Unknown" {
         val classDetails = service.getClassDetails("xyz")
         println(classDetails)
