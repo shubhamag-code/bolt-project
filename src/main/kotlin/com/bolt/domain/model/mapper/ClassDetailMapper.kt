@@ -1,9 +1,9 @@
 package com.bolt.domain.model.mapper
 
-import com.bolt.model.Ability
-import com.bolt.model.ApiReference
-import com.bolt.model.ClassDetail
-import com.bolt.model.ProficiencyChoice
+import com.bolt.domain.model.Ability
+import com.bolt.domain.model.ApiReference
+import com.bolt.domain.model.ClassDetail
+import com.bolt.domain.model.ProficiencyChoice
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonArray

@@ -12,7 +12,7 @@ repositories {
 }
 
 application {
-    mainClass.set("com.bolt.config.KtorConfigKt")
+    mainClass.set("com.bolt.config.MainApplicationKt")
 }
 
 dependencies {
