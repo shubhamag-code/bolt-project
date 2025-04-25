@@ -29,10 +29,11 @@ dependencies {
 
     implementation("ch.qos.logback:logback-classic:1.4.11")
 
-    testImplementation(kotlin("test"))
-    testImplementation("io.ktor:ktor-server-tests-jvm:2.3.7")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+    testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
+    testImplementation("io.kotest:kotest-assertions-core:5.8.0")
+    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("io.ktor:ktor-client-mock:2.3.4")
+
 }
 
 tasks.test {
