@@ -1,6 +1,7 @@
 package com.bolt.di
 
 import com.bolt.domain.service.DnDService
+import com.bolt.domain.service.DnDServiceImpl
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -21,6 +22,6 @@ object AppModule {
     }
 
     val dndService: DnDService by lazy {
-        DnDService(httpClient)
+        DnDServiceImpl(httpClient)
     }
 }
